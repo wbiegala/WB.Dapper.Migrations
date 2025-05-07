@@ -1,4 +1,6 @@
-﻿namespace WB.Dapper.Migrations.Core
+﻿using WB.Dapper.Migrations.Contract;
+
+namespace WB.Dapper.Migrations.Core
 {
     internal class MigrationExecutor : IMigrationExecutor
     {

@@ -1,6 +1,6 @@
 ﻿namespace WB.Dapper.Migrations.Core
 {
-    public interface IMigrationExecutedRepository
+    internal interface IMigrationExecutedRepository
     {
         Task EnsureContextExistsAsync(CancellationToken cancellationToken = default);
         Task SaveAsync(MigrationExecuted logEntry, CancellationToken cancellationToken = default);

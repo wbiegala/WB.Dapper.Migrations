@@ -1,6 +1,6 @@
 ﻿namespace WB.Dapper.Migrations.Core
 {
-    public class MigrationExecuted
+    internal class MigrationExecuted
     {
         public Guid Id { get; init; }
         public required string Source { get; init; }

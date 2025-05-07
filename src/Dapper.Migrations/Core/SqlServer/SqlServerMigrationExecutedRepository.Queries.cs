@@ -1,6 +1,4 @@
-﻿using WB.Dapper.Migrations.Core;
-
-namespace WB.Dapper.Migrations.SqlServer.Core
+﻿namespace WB.Dapper.Migrations.Core.SqlServer
 {
     internal partial class SqlServerMigrationExecutedRepository
     {

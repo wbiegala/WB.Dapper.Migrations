@@ -2,7 +2,7 @@
 
 namespace WB.Dapper.Migrations.Core
 {
-    public interface ISqlConnectionProvider
+    internal interface ISqlConnectionProvider
     {
         SqlConnection GetConnection();
     }
