@@ -1,4 +1,5 @@
 ﻿using WB.Dapper.Migrations.Contract;
+using WB.Dapper.Migrations.Contract.Exceptions;
 
 namespace WB.Dapper.Migrations.Core
 {
@@ -24,8 +25,7 @@ namespace WB.Dapper.Migrations.Core
             }
             catch (Exception ex)
             {
-                //TODO: log error
-                return;
+                throw new MigrationException($"Error while ensuring that migration data structure exists in given database. Reason: {ex.Message}", ex);
             }
 
             var migrations = _migrationProvider.GetMigrations();
@@ -51,8 +51,7 @@ namespace WB.Dapper.Migrations.Core
                     }
                     catch (Exception ex)
                     {
-                        //TODO: log
-                        return;
+                        throw new MigrationException(GetMigrationError(migration, ex), ex);
                     }
                 }
             }
@@ -71,5 +70,8 @@ namespace WB.Dapper.Migrations.Core
 
             await _migrationLogRepository.SaveAsync(migrationLog);
         }
+
+        private static string GetMigrationError(MigrationContext context, Exception exception) =>
+            $"Error while executing migration number {context.Number} from assembly {context.MigrationSource}. Reason: {exception.Message}";
     }
 }
