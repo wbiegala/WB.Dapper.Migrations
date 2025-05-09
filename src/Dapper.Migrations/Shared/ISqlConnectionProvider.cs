@@ -1,8 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
 
-namespace WB.Dapper.Migrations.Core
+namespace WB.Dapper.Migrations.Shared
 {
-    internal interface ISqlConnectionProvider
+    public interface ISqlConnectionProvider
     {
         SqlConnection GetConnection();
     }

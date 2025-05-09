@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Dapper.Migrations.SqlServer\Dapper.Migrations.SqlServer.csproj" />
     <ProjectReference Include="..\..\src\Dapper.Migrations\Dapper.Migrations.csproj" />
   </ItemGroup>
 

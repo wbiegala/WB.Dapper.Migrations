@@ -1,7 +1,9 @@
 ﻿using System.Text;
 using Moq;
 using WB.Dapper.Migrations.Contract;
+using WB.Dapper.Migrations.Contract.Exceptions;
 using WB.Dapper.Migrations.Core;
+using WB.Dapper.Migrations.Shared;
 
 namespace WB.Dapper.Migrations.Tests
 {
@@ -55,10 +57,10 @@ namespace WB.Dapper.Migrations.Tests
         public async Task MigrateDatabaseAsync_WhenThereIsNoDatabaseConnection_SkipDatabaseMigrating()
         {
             _migrationLogRepository.Setup(repo => repo.EnsureContextExistsAsync(It.IsAny<CancellationToken>()))
-            .Throws<TimeoutException>();
+                .Throws<TimeoutException>();
 
             var executor = new MigrationExecutor(Provider, _migrationLogRepository.Object);
-            await executor.MigrateDatabaseAsync();
+            await Assert.ThrowsAsync<MigrationException>(executor.MigrateDatabaseAsync);
 
             _migrationLogRepository.Verify(repo => repo.SaveAsync(It.IsAny<MigrationExecuted>(), It.IsAny<CancellationToken>()), Times.Never);
             _migrationLogRepository.Verify(repo => repo.GetExecutedMigrationsAsync(It.IsAny<CancellationToken>()), Times.Never);
@@ -72,7 +74,7 @@ namespace WB.Dapper.Migrations.Tests
                 .Returns(Task.FromResult(installedMigrations.AsEnumerable()));
 
             var executor = new MigrationExecutor(FailedMigrationProvider, _migrationLogRepository.Object);
-            await executor.MigrateDatabaseAsync();
+            await Assert.ThrowsAsync<MigrationException>(executor.MigrateDatabaseAsync);
 
             _migrationLogRepository.Verify(repo => repo.EnsureContextExistsAsync(It.IsAny<CancellationToken>()), Times.Once);
             _migrationLogRepository.Verify(repo => repo.GetExecutedMigrationsAsync(It.IsAny<CancellationToken>()), Times.Once);

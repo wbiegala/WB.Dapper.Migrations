@@ -1,5 +1,6 @@
 ﻿using WB.Dapper.Migrations.Contract;
 using WB.Dapper.Migrations.Contract.Exceptions;
+using WB.Dapper.Migrations.Shared;
 
 namespace WB.Dapper.Migrations.Core
 {

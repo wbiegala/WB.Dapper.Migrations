@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using WB.Dapper.Migrations.Contract;
 using WB.Dapper.Migrations.Core;
-using WB.Dapper.Migrations.Core.SqlServer;
+using WB.Dapper.Migrations.SqlServer;
+using WB.Dapper.Migrations.Shared;
+using Dapper.Migrations.SqlServer;
 
 namespace WB.Dapper.Migrations.Tests
 {

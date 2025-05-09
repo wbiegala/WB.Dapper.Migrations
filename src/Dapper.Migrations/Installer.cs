@@ -1,8 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using System.Reflection;
 using WB.Dapper.Migrations.Contract;
 using WB.Dapper.Migrations.Core;
-using WB.Dapper.Migrations.Core.SqlServer;
+using WB.Dapper.Migrations.Shared;
 
 namespace WB.Dapper.Migrations
 {
@@ -13,12 +14,18 @@ namespace WB.Dapper.Migrations
             Action<DapperMigrationsOptions> configure,
             params Assembly[] assemblies)
         {
-            var options = new DapperMigrationsOptions();
+            var options = new DapperMigrationsOptions(services);
             configure(options);
-            services.AddDatabaseProvider(options);
 
             services.AddScoped<IMigrationProvider, MigrationProvider>();
             services.AddScoped<IMigrationExecutor, MigrationExecutor>();
+
+            if (!services.Any(s => s.ServiceType == typeof(IMigrationExecutedRepository)))
+            {
+                throw new InvalidOperationException($"No implementation of {nameof(IMigrationExecutedRepository)}. Check if you choose any database provider.");
+            }
+
+            services.TryAddScoped<ISqlConnectionProvider>(_ => new BasicSqlConnectionProvider(options.ConnectionString));
 
             foreach (var assembly in assemblies)
             {
@@ -29,25 +36,6 @@ namespace WB.Dapper.Migrations
                 {
                     services.Add(new ServiceDescriptor(typeof(IMigration), type, ServiceLifetime.Scoped));
                 }
-            }
-
-            return services;
-        }
-
-        private static IServiceCollection AddDatabaseProvider(this IServiceCollection services, DapperMigrationsOptions options)
-        {
-            if (string.IsNullOrWhiteSpace(options.ConnectionString))
-                throw new InvalidOperationException("Connection string is not set.");
-
-            services.AddScoped<ISqlConnectionProvider>(_ => new SqlConnectionProvider(options.ConnectionString));
-
-            switch (options.DatabaseProvider)
-            {
-                case DatabaseProvider.SqlServer:
-                    services.AddScoped<IMigrationExecutedRepository, SqlServerMigrationExecutedRepository>();
-                    break;
-                default:
-                    throw new NotSupportedException($"Database provider '{options.DatabaseProvider}' is not supported.");
             }
 
             return services;

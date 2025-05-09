@@ -1,14 +1,26 @@
-﻿namespace WB.Dapper.Migrations
+﻿using Microsoft.Extensions.DependencyInjection;
+
+namespace WB.Dapper.Migrations
 {
     public sealed class DapperMigrationsOptions
     {
-        internal DatabaseProvider DatabaseProvider { get; private set; }
+        private readonly IServiceCollection _services;
+        
         internal string ConnectionString { get; private set; } = string.Empty;
 
-        public void UseSqlServer(string connectionString)
+        public DapperMigrationsOptions(IServiceCollection services)
         {
-            DatabaseProvider = DatabaseProvider.SqlServer;
+            _services = services;
+        }
+
+        public void RegisterConnectionString(string connectionString)
+        {
             ConnectionString = connectionString;
+        }
+
+        public void RegisterComponents(Action<IServiceCollection> configure)
+        {
+            configure(_services);
         }
     }
 }
