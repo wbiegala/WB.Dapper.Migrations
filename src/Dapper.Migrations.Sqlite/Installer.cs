@@ -5,7 +5,7 @@ namespace WB.Dapper.Migrations.Sqlite
 {
     public static class Installer
     {
-        public static void UseSqlServer(this DapperMigrationsOptions options, string connectionString)
+        public static void UseSqlite(this DapperMigrationsOptions options, string connectionString)
         {
             options.RegisterConnectionString(connectionString);
             options.RegisterComponents(services =>

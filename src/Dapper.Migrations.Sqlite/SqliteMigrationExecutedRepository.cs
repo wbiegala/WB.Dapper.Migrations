@@ -19,13 +19,6 @@ namespace WB.Dapper.Migrations.Sqlite
             await connection.OpenAsync();
             using var transaction = await connection.BeginTransactionAsync();
 
-            var schemaCount = await connection.ExecuteScalarAsync<int>(CheckMigrationSchemaExistsQuery, transaction: transaction);
-
-            if (schemaCount != 1)
-            {
-                await connection.ExecuteAsync(CreateMigrationSchemaQuery, transaction: transaction);
-            }
-
             var tableCount = await connection.ExecuteScalarAsync<int>(CheckMigrationTableExistsQuery, transaction: transaction);
 
             if (tableCount == 1)
@@ -51,7 +44,17 @@ namespace WB.Dapper.Migrations.Sqlite
             await connection.OpenAsync();
             using var transaction = await connection.BeginTransactionAsync();
 
-            await connection.ExecuteAsync(InsertExecutedMigrationQuery, logEntry, transaction: transaction);
+            var logEntryWithId = new MigrationExecuted
+            {
+                Id = Guid.NewGuid(),
+                Source = logEntry.Source,
+                Number = logEntry.Number,
+                Name = logEntry.Name,
+                Describtion = logEntry.Describtion,
+                Timestamp = logEntry.Timestamp
+            };
+
+            await connection.ExecuteAsync(InsertExecutedMigrationQuery, logEntryWithId, transaction: transaction);
 
             await transaction.CommitAsync();
         }

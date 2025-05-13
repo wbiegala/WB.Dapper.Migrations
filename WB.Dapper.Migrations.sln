@@ -9,8 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TEST", "TEST", "{02EA681E-C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper.Migrations.Tests", "test\Dapper.Migrations.Tests\Dapper.Migrations.Tests.csproj", "{EB7901C8-87D6-4CDF-84D9-63DD0AF4088A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DEMO", "DEMO", "{EDADDE04-F489-4C6B-BD1F-E58F8DB2BF41}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper.Migrations.SqlServer", "src\Dapper.Migrations.SqlServer\Dapper.Migrations.SqlServer.csproj", "{74CC4440-2991-40A6-93BA-78F96DDD9766}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper.Migrations.Sqlite", "src\Dapper.Migrations.Sqlite\Dapper.Migrations.Sqlite.csproj", "{D8F28AF5-9997-46FD-9124-EBA9AA4FF788}"
