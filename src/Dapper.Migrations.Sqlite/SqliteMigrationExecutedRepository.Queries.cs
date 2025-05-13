@@ -1,6 +1,4 @@
-﻿using WB.Dapper.Migrations.Shared;
-
-namespace Dapper.Migrations.Sqlite
+﻿namespace WB.Dapper.Migrations.Sqlite
 {
     internal partial class SqliteMigrationExecutedRepository
     {

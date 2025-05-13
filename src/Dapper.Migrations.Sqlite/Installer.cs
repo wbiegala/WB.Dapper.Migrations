@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using WB.Dapper.Migrations.Shared;
 
-namespace WB.Dapper.Migrations.SqlServer
+namespace WB.Dapper.Migrations.Sqlite
 {
     public static class Installer
     {
@@ -10,7 +10,7 @@ namespace WB.Dapper.Migrations.SqlServer
             options.RegisterConnectionString(connectionString);
             options.RegisterComponents(services =>
             {
-                services.AddScoped<IMigrationExecutedRepository, SqlServerMigrationExecutedRepository>();
+                services.AddScoped<IMigrationExecutedRepository, SqliteMigrationExecutedRepository>();
             });
         }
     }
