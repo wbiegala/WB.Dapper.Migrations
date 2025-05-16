@@ -10,8 +10,14 @@ namespace WB.Dapper.Migrations.Sqlite
             options.RegisterConnectionString(connectionString);
             options.RegisterComponents(services =>
             {
+                services.AddScoped<ISqlConnectionProvider>(provider =>
+                {
+                    return new SqliteConnectionProvider(connectionString);
+                });
                 services.AddScoped<IMigrationExecutedRepository, SqliteMigrationExecutedRepository>();
             });
+
+            ProviderActivator.Activate();
         }
     }
 }

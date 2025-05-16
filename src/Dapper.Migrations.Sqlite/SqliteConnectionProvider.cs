@@ -1,14 +1,14 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.Sqlite;
 using System.Data.Common;
 using WB.Dapper.Migrations.Shared;
 
-namespace WB.Dapper.Migrations.Core
+namespace WB.Dapper.Migrations.Sqlite
 {
-    internal class BasicSqlConnectionProvider : ISqlConnectionProvider
+    internal sealed class SqliteConnectionProvider : ISqlConnectionProvider
     {
         private readonly string _connectionString;
 
-        public BasicSqlConnectionProvider(string connectionString)
+        public SqliteConnectionProvider(string connectionString)
         {
             _connectionString = connectionString
                 ?? throw new ArgumentNullException(nameof(connectionString));
@@ -16,7 +16,7 @@ namespace WB.Dapper.Migrations.Core
 
         public DbConnection GetConnection()
         {
-            return new SqlConnection(_connectionString);
+            return new SqliteConnection(_connectionString);
         }
     }
 }
