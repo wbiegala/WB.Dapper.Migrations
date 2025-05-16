@@ -33,9 +33,19 @@ namespace WB.Dapper.Migrations.Sqlite
         {
             using var connection = _connectionProvider.GetConnection();
             await connection.OpenAsync();
-            var migrations = await connection.QueryAsync<MigrationExecuted>(GetExecutedMigrationsQuery);
+            var migrations = await connection.QueryAsync<MigrationExecutedReadModel>(GetExecutedMigrationsQuery);
 
-            return migrations ?? Enumerable.Empty<MigrationExecuted>();
+            var mapping = (MigrationExecutedReadModel model) => new MigrationExecuted
+            {
+                Id = Guid.Parse(model.Id),
+                Source = model.Source,
+                Number = model.Number,
+                Name = model.Name,
+                Describtion = model.Describtion,
+                Timestamp = DateTimeOffset.Parse(model.Timestamp)
+            };
+
+            return migrations.Select(mapping) ?? Enumerable.Empty<MigrationExecuted>();
         }
 
         public async Task SaveAsync(MigrationExecuted logEntry, CancellationToken cancellationToken = default)
@@ -57,6 +67,16 @@ namespace WB.Dapper.Migrations.Sqlite
             await connection.ExecuteAsync(InsertExecutedMigrationQuery, logEntryWithId, transaction: transaction);
 
             await transaction.CommitAsync();
+        }
+
+        private sealed class MigrationExecutedReadModel
+        {
+            public string Id { get; set; }
+            public string Source { get; set; }
+            public int Number { get; set; }
+            public string Name { get; set; }
+            public string? Describtion { get; set; }
+            public string Timestamp { get; set; }
         }
     }
 }
