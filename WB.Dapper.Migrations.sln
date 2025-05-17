@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper.Migrations", "src\Dapper.Migrations\Dapper.Migrations.csproj", "{66306B55-7483-49AA-9387-53707CDC85C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TEST", "TEST", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper.Migrations.Tests", "test\Dapper.Migrations.Tests\Dapper.Migrations.Tests.csproj", "{EB7901C8-87D6-4CDF-84D9-63DD0AF4088A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper.Migrations.SqlServer", "src\Dapper.Migrations.SqlServer\Dapper.Migrations.SqlServer.csproj", "{74CC4440-2991-40A6-93BA-78F96DDD9766}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dapper.Migrations.Sqlite", "src\Dapper.Migrations.Sqlite\Dapper.Migrations.Sqlite.csproj", "{D8F28AF5-9997-46FD-9124-EBA9AA4FF788}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DEMO", "DEMO", "{FE298B1C-A5F9-45A3-B8CE-EFD781AFE8AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WB.Dapper.Migrations.Demo", "demo\WB.Dapper.Migrations.Demo\WB.Dapper.Migrations.Demo.csproj", "{42265F70-691F-7C6A-07BF-2A7545140F73}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66306B55-7483-49AA-9387-53707CDC85C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66306B55-7483-49AA-9387-53707CDC85C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66306B55-7483-49AA-9387-53707CDC85C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66306B55-7483-49AA-9387-53707CDC85C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB7901C8-87D6-4CDF-84D9-63DD0AF4088A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB7901C8-87D6-4CDF-84D9-63DD0AF4088A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB7901C8-87D6-4CDF-84D9-63DD0AF4088A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB7901C8-87D6-4CDF-84D9-63DD0AF4088A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74CC4440-2991-40A6-93BA-78F96DDD9766}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74CC4440-2991-40A6-93BA-78F96DDD9766}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74CC4440-2991-40A6-93BA-78F96DDD9766}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74CC4440-2991-40A6-93BA-78F96DDD9766}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8F28AF5-9997-46FD-9124-EBA9AA4FF788}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8F28AF5-9997-46FD-9124-EBA9AA4FF788}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8F28AF5-9997-46FD-9124-EBA9AA4FF788}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8F28AF5-9997-46FD-9124-EBA9AA4FF788}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42265F70-691F-7C6A-07BF-2A7545140F73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42265F70-691F-7C6A-07BF-2A7545140F73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42265F70-691F-7C6A-07BF-2A7545140F73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42265F70-691F-7C6A-07BF-2A7545140F73}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EB7901C8-87D6-4CDF-84D9-63DD0AF4088A} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{42265F70-691F-7C6A-07BF-2A7545140F73} = {FE298B1C-A5F9-45A3-B8CE-EFD781AFE8AC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C49D30F1-1B2D-441B-9517-39E3E3A1BF4F}
+	EndGlobalSection
+EndGlobal
